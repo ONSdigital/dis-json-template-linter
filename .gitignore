@@ -1,0 +1,20 @@
+/build/
+*.tar.gz
+
+#IntelliJ
+.idea
+*.iml
+
+#VSCode
+.vscode
+
+#Mac
+.DS_Store
+
+#Test output files
+coverage.txt
+
+/main
+
+.go/
+
