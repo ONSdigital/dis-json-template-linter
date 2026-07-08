@@ -52,10 +52,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - name: Validate config schema is well-formed JSON Schema
-        uses: python-jsonschema/check-jsonschema@0.33.0
+      - name: Setup Python
+        uses: actions/setup-python@v6
         with:
-          check-metaschema: config-spec.yaml
+          python-version: '3.x'
+      - name: Install check-jsonschema
+        run: pip install check-jsonschema
+      - name: Validate config schema is well-formed JSON Schema
+        run: check-jsonschema --check-metaschema config-spec.yaml
 
   dis-json-template-linter-unit:
     runs-on: ubuntu-latest
