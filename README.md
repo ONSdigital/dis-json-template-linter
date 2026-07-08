@@ -23,7 +23,7 @@ We use [check-jsonschema](https://github.com/python-jsonschema/check-jsonschema#
 ## Installation
 
 ```sh
-  go install github.com/ONSdigital/dis-json-template-linter@latest
+  go install github.com/ONSdigital/dis-json-template-linter/cmd/dis-json-template-linter@latest
 ```
 
 We may provide a brew tap in future.
