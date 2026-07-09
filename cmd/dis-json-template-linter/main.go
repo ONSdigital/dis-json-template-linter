@@ -23,7 +23,7 @@ var configPath string
 
 var rootCmd = &cobra.Command{
 	Use:   "dis-json-template-linter <file|glob> [<file|glob>...]",
-	Short: "Lint JSON+Go-template (.tmpl) files for style violations",
+	Short: "Lint Go templated JSON (.tmpl) files for style violations",
 	Long: `dis-json-template-linter checks .tmpl files that contain JSON written in
 Go templating syntax, enforcing rules such as indentation, trailing
 whitespace, missing trailing newlines, and Go template syntax validity.

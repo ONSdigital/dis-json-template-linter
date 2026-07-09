@@ -7,29 +7,35 @@ import (
 	"gopkg.in/yaml.v3"
 )
 
-// TODO: allow override of this via flag
 const configFileName = ".dis-json-template-linter.yaml"
+
+type IndentStyle string
+
+const (
+	IndentStyleSpace IndentStyle = "space"
+	IndentStyleTab   IndentStyle = "tab"
+)
 
 // Config holds the linter configuration.
 type Config struct {
-	IndentSize              int    `yaml:"indent_size"`
-	IndentStyle             string `yaml:"indent_style"`
-	CheckTrailingWhitespace bool   `yaml:"check_trailing_whitespace"`
-	CheckTrailingNewline    bool   `yaml:"check_trailing_newline"`
-	CheckTemplateSyntax     bool   `yaml:"check_template_syntax"`
-	CheckObjectBrace        bool   `yaml:"check_object_brace"`
-	CheckTemplateSpacing    bool   `yaml:"check_template_spacing"`
-	CheckKeyColon           bool   `yaml:"check_key_colon"`
-	CheckTemplateAction     bool   `yaml:"check_template_action"`
-	CheckIndentStep         bool   `yaml:"check_indent_step"`
-	CheckIndentOpener       bool   `yaml:"check_indent_opener"`
+	IndentSize              int         `yaml:"indent_size"`
+	IndentStyle             IndentStyle `yaml:"indent_style"`
+	CheckTrailingWhitespace bool        `yaml:"check_trailing_whitespace"`
+	CheckTrailingNewline    bool        `yaml:"check_trailing_newline"`
+	CheckTemplateSyntax     bool        `yaml:"check_template_syntax"`
+	CheckObjectBrace        bool        `yaml:"check_object_brace"`
+	CheckTemplateSpacing    bool        `yaml:"check_template_spacing"`
+	CheckKeyColon           bool        `yaml:"check_key_colon"`
+	CheckTemplateAction     bool        `yaml:"check_template_action"`
+	CheckIndentStep         bool        `yaml:"check_indent_step"`
+	CheckIndentOpener       bool        `yaml:"check_indent_opener"`
 }
 
 // Default returns the default configuration.
 func Default() Config {
 	return Config{
 		IndentSize:              2,
-		IndentStyle:             "space",
+		IndentStyle:             IndentStyleSpace,
 		CheckTrailingWhitespace: true,
 		CheckTrailingNewline:    true,
 		CheckTemplateSyntax:     true,
@@ -60,7 +66,7 @@ func LoadFromFile(path string) (Config, error) {
 }
 
 func loadFromPath(path string, base Config) (Config, error) {
-	data, err := os.ReadFile(path) // #nosec G304 -- path comes from user flag or CWD walk
+	data, err := os.ReadFile(path)
 	if err != nil {
 		return base, err
 	}

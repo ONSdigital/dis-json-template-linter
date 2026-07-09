@@ -15,7 +15,7 @@ func TestDefault(t *testing.T) {
 
 			Convey("Then all expected defaults are returned", func() {
 				So(cfg.IndentSize, ShouldEqual, 2)
-				So(cfg.IndentStyle, ShouldEqual, "space")
+				So(cfg.IndentStyle, ShouldEqual, IndentStyleSpace)
 				So(cfg.CheckTrailingWhitespace, ShouldBeTrue)
 				So(cfg.CheckTrailingNewline, ShouldBeTrue)
 				So(cfg.CheckTemplateSyntax, ShouldBeTrue)
@@ -66,7 +66,7 @@ func TestLoadFromFile(t *testing.T) {
 			Convey("Then that field is updated and all others remain as defaults", func() {
 				So(err, ShouldBeNil)
 				So(cfg.IndentSize, ShouldEqual, 4)
-				So(cfg.IndentStyle, ShouldEqual, "space")
+				So(cfg.IndentStyle, ShouldEqual, IndentStyleSpace)
 				So(cfg.CheckTrailingWhitespace, ShouldBeTrue)
 			})
 		})
@@ -78,7 +78,7 @@ func TestLoadFromFile(t *testing.T) {
 			Convey("Then all overridden fields are updated", func() {
 				So(err, ShouldBeNil)
 				So(cfg.IndentSize, ShouldEqual, 4)
-				So(cfg.IndentStyle, ShouldEqual, "tab")
+				So(cfg.IndentStyle, ShouldEqual, IndentStyleTab)
 				So(cfg.CheckTrailingWhitespace, ShouldBeFalse)
 			})
 		})
@@ -145,7 +145,7 @@ func TestLoad(t *testing.T) {
 
 			Convey("Then the closer file takes precedence", func() {
 				So(err, ShouldBeNil)
-				So(cfg.IndentStyle, ShouldEqual, "tab")
+				So(cfg.IndentStyle, ShouldEqual, IndentStyleTab)
 			})
 		})
 	})
