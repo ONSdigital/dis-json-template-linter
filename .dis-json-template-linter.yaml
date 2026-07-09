@@ -1,0 +1,45 @@
+# .dis-json-template-linter.yaml - dis-json-template-linter configuration
+#
+# Discovered automatically by walking up the directory tree from each linted
+# file. Place this file at the root of the repository.
+
+# Number of spaces (or tabs) per indent level.
+indent_size: 2
+
+# Indentation character. Allowed values: "space" or "tab".
+indent_style: space
+
+# Enforce that each line's indentation changes by at most one level relative to
+# the previous content line. With indent_size: 2 the only valid changes are
+# -2, 0, or +2. Blank lines and template directive lines are excluded.
+check_indent_step: true
+
+# Flag lines that end with spaces or tabs.
+check_trailing_whitespace: true
+
+# Flag files that do not end with exactly one newline, or that have a trailing
+# blank line.
+check_trailing_newline: true
+
+# Parse the file as a Go template and report any syntax errors.
+check_template_syntax: true
+
+# Enforce that object-valued keys have the opening "{" on the same line as the
+# key, separated by exactly one space: "key": { not "key":{ or "key":\n{
+check_object_brace: true
+
+# Enforce spaces inside {{ }} template delimiters:
+#   {{ action }}   and  {{- action -}}  are correct
+#   {{action}}  is not
+# Comments ({{/* ... */}}) are exempt.
+check_template_spacing: true
+
+# Enforce JSON key-value colon spacing: no space before ":" and exactly one
+# space after: "key": "value"  not  "key" : "value" or "key":"value".
+check_key_colon: true
+
+# Enforce that {{ template "name" }} and {{ block "name" }} actions have a
+# space between the quoted name and the pipeline argument:
+#   {{ template "header.tmpl" . }}  is correct
+#   {{ template "header.tmpl". }}   is not
+check_template_action: true

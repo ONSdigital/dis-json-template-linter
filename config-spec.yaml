@@ -1,0 +1,87 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: dis-json-template-linter config
+description: >
+  Schema for .dis-json-template-linter.yaml - all fields are optional and
+  fall back to their defaults when omitted.
+type: object
+additionalProperties: false
+
+properties:
+  indent_size:
+    type: integer
+    minimum: 0
+    default: 2
+    description: >
+      Number of spaces per indentation level.
+      Only relevant when `indent_style` is `space`.
+      Set to `0` to disable the indent-step check.
+
+  indent_style:
+    type: string
+    enum: [space, tab]
+    default: space
+    description: Indentation character style expected in linted files.
+
+  check_trailing_whitespace:
+    type: boolean
+    default: true
+    description: >
+      When `true`, flag any line that ends with one or more whitespace
+      characters before the newline.
+
+  check_trailing_newline:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require each file to end with exactly one newline.
+      Both a missing newline and a trailing blank line are flagged.
+
+  check_template_syntax:
+    type: boolean
+    default: true
+    description: >
+      When `true`, parse each file with Go's `text/template` package and
+      report any syntax errors.
+
+  check_object_brace:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require the opening brace of a JSON object value to
+      appear on the same line as its key rather than on the next line.
+
+  check_template_spacing:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require exactly one space (or a trim modifier) after
+      `{{` and before `}}` in every template action.
+
+  check_key_colon:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require JSON-style key-value pairs to have no space
+      before the colon and exactly one space after it.
+
+  check_template_action:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require a space between the quoted name and the
+      argument in `template` and `block` actions.
+
+  check_indent_step:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require indentation to increase or decrease by exactly
+      one `indent_size` step between adjacent non-blank, non-directive
+      lines. Set `indent_size` to `0` to disable this check entirely.
+
+  check_indent_opener:
+    type: boolean
+    default: true
+    description: >
+      When `true`, require the opening line of an indented block to appear
+      on the same line as the key that introduces it.
