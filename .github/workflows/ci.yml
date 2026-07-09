@@ -30,7 +30,7 @@ jobs:
           cache: true
       - name: Install dis-vulncheck
         run: go install github.com/ONSdigital/dis-vulncheck@latest
-      - name: Run dis-json-template-linter
+      - name: Run dis-vulncheck
         run: make audit
 
   dis-json-template-linter-lint-go:
